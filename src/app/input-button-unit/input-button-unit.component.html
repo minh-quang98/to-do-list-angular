@@ -2,3 +2,6 @@
   input-button-unit works!
   The title is: {{ title }}
 </p>
+
+<input [value]="title" (keyup.enter)="changeTitle(getInputValue($event))">
+<button (click)="changeTitle('Button Clicked!')">Save</button>
