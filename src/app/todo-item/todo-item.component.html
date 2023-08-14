@@ -3,9 +3,14 @@
          class="todo-checkbox"
          (click)="completeItem()"
          [checked]="item.completed"/>
-  <span class="todo-title" [ngClass]="{'todo-complete': item.completed}">
+  <span *ngIf="!item.isEdit" class="todo-title" [ngClass]="{'todo-complete': item.completed}">
     {{ item.title }}
   </span>
 
-  <button class="btn btn-red" (click)="removeItem()">Remove</button>
+  <input *ngIf="item.isEdit" #updateElementRef [value]="item.title">
+
+  <button *ngIf="!item.isEdit" class="btn" (click)="editMode()">Edit</button>
+  <button *ngIf="item.isEdit" class="btn" (click)="saveItem(updateElementRef.value)">Save</button>
+  <button *ngIf="!item.isEdit" class="btn btn-red" (click)="removeItem()">Remove</button>
+  <button *ngIf="item.isEdit" class="btn btn-red" (click)="editMode()">Cancel</button>
 </div>

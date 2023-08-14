@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { TodoItem } from '../interfaces/todo-item';
 import { TodoListService } from '../services/todo-list.service';
 
@@ -11,6 +11,7 @@ export class TodoItemComponent implements OnInit{
   @Input() item: TodoItem;
   @Output() remove: EventEmitter<TodoItem> = new EventEmitter<TodoItem>();
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('updateElementRef') updateElementRef: ElementRef;
 
   constructor() {
 
@@ -30,4 +31,19 @@ export class TodoItemComponent implements OnInit{
       changes: {completed: !this.item.completed}
     })
   }
+
+  editMode(): void {
+    this.update.emit({
+      item: this.item,
+      changes: {isEdit: !this.item.isEdit}
+    })
+  }
+
+  saveItem(value): void {
+    this.update.emit({
+      item: value,
+      changes: {isEdit: false}
+    })
+  }
+
 }
