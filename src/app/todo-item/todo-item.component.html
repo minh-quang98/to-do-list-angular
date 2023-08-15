@@ -1,5 +1,9 @@
 <div class="todo-item">
-  <p-checkbox [(ngModel)]="item.completed" [binary]="true" inputId="binary"></p-checkbox>
+  <input type="checkbox"
+  class="todo-checkbox"
+  (click)="completeItem()"
+  [checked]="item.completed"/>
+  <!-- <p-checkbox [(ngModel)]="checked" [binary]="true" (onChange)="completeItem()"></p-checkbox> -->
   <span *ngIf="!item.isEdit" class="todo-title" [ngClass]="{'todo-complete': item.completed}">
     {{ item.title }}
   </span>

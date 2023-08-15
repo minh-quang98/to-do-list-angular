@@ -30,7 +30,10 @@ export class ListManagerComponent implements OnInit {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Remove Success' });
   }
 
-  updateItem(item: TodoItem, changes): void {
+  updateItem(item: TodoItem, changes, save: boolean): void {
     this.todoListService.updateItem(item, changes)
+    if (save) {
+      this.messageService.add({ severity:'success', summary: 'Success', detail: 'Update Success' });
+    }
   }
 }
