@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { TodoItem } from '../interfaces/todo-item';
 import { TodoListService } from '../services/todo-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-item',
@@ -13,7 +14,7 @@ export class TodoItemComponent implements OnInit{
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('updateElementRef') updateElementRef: ElementRef;
 
-  constructor() {
+  constructor(private router: Router) {
 
   }
 
@@ -26,10 +27,9 @@ export class TodoItemComponent implements OnInit{
   }
 
   completeItem(): void {
-    const dateComplete = new Date()
     this.update.emit({
       item: this.item,
-      changes: {completed: !this.item.completed, dateCompeted: !this.item.completed ? dateComplete : null}
+      changes: {completed: !this.item.completed, dateCompeted: !this.item.completed ? new Date() : null}
     })
   }
 
@@ -45,5 +45,9 @@ export class TodoItemComponent implements OnInit{
       item: this.item,
       changes: {title: value.nativeElement.value, isEdit: false}
     })
+  }
+
+  viewMode(id: number): void {
+    this.router.navigate([`todo-item-detail/${id}/view`]);
   }
 }

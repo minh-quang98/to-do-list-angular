@@ -9,6 +9,7 @@
 
   <input class="todo-input" *ngIf="item.isEdit" #updateElementRef [value]="item.title">
 
+  <button *ngIf="!item.isEdit" class="btn" (click)="viewMode(item.id)">View</button>
   <button [disabled]="item.completed" *ngIf="!item.isEdit" class="btn" [ngClass]="{'btn-disabled': item.completed}" (click)="editMode()">Edit</button>
   <button *ngIf="item.isEdit" class="btn" (click)="saveItem(updateElementRef)">Save</button>
   <button *ngIf="!item.isEdit" class="btn btn-red" (click)="removeItem()">Remove</button>

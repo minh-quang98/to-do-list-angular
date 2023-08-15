@@ -1,1 +1,37 @@
-<p>todo-item-detail works!</p>
+<div class="todo-item-detail">
+  <div class="todo-detail-row">
+    <div class="todo-detail-col">
+        <div class="detail-col-title">Id: </div>
+        <div class="detail-col-value">{{ id }}</div>
+    </div>
+    <div class="todo-detail-col">
+      <div class="detail-col-title">Name: </div>
+      <div class="detail-col-value">{{ name }}</div>
+    </div>
+  </div>
+
+  <div class="todo-detail-row">
+    <div class="todo-detail-col">
+        <div class="detail-col-title">Date Start: </div>
+        <div class="detail-col-value">{{ dateStart }}</div>
+    </div>
+    <div class="todo-detail-col">
+      <div class="detail-col-title">Date Complete: </div>
+      <div class="detail-col-value">{{ dateComplete }}</div>
+    </div>
+  </div>
+
+  <div class="todo-detail-row">
+    <div class="todo-detail-col">
+        <div class="detail-col-title">Status: </div>
+        <div class="detail-col-value">{{ status }}</div>
+    </div>
+    <div class="todo-detail-col">
+      <div class="detail-col-title">Total Time: </div>
+      <div class="detail-col-value">{{ totalTime }}</div>
+    </div>
+  </div>
+</div>
+<div class="detail-group-button">
+  <button class="btn" (click)="backClick()">Back to List Page</button>
+</div>

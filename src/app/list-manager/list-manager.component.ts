@@ -19,8 +19,7 @@ export class ListManagerComponent implements OnInit {
   }
 
   addItem(title: string): void {
-    const dateStart = new Date()
-    this.todoListService.addItem({ title, dateStart: dateStart });
+    this.todoListService.addItem({ id: this.todoList.length + 1, title, dateStart: new Date() });
   }
 
   removeItem(item: TodoItem): void {
