@@ -8,13 +8,15 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
 import { ListManagerComponent } from './list-manager/list-manager.component';
 import { TodoListService } from './services/todo-list.service';
 import { StorageService } from './services/storage.service';
+import { TodoItemDetailComponent } from './todo-item-detail/todo-item-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputButtonUnitComponent,
     TodoItemComponent,
-    ListManagerComponent
+    ListManagerComponent,
+    TodoItemDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,9 +26,10 @@ export class TodoItemComponent implements OnInit{
   }
 
   completeItem(): void {
+    const dateComplete = new Date()
     this.update.emit({
       item: this.item,
-      changes: {completed: !this.item.completed}
+      changes: {completed: !this.item.completed, dateCompeted: !this.item.completed ? dateComplete : null}
     })
   }
 
@@ -41,9 +42,8 @@ export class TodoItemComponent implements OnInit{
 
   saveItem(value): void {
     this.update.emit({
-      item: value,
-      changes: {isEdit: false}
+      item: this.item,
+      changes: {title: value.nativeElement.value, isEdit: false}
     })
   }
-
 }

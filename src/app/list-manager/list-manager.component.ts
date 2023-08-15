@@ -19,12 +19,15 @@ export class ListManagerComponent implements OnInit {
   }
 
   addItem(title: string): void {
-    this.todoListService.addItem({ title });
+    const dateStart = new Date()
+    this.todoListService.addItem({ title, dateStart: dateStart });
   }
 
   removeItem(item: TodoItem): void {
     this.todoListService.deleteItem(item);
   }
 
-  updateItem(item: TodoItem, changes): void {this.todoListService.updateItem(item, changes)}
+  updateItem(item: TodoItem, changes): void {
+    this.todoListService.updateItem(item, changes)
+  }
 }

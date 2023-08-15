@@ -40,6 +40,15 @@ ol, ul {
   background: red;
 }
 
+.btn-disabled {
+  background: gray;
+  cursor: default;
+}
+
+.btn-disabled:hover {
+  background: gray;
+}
+
 .btn-red:hover {
   background: darkred;
 }
