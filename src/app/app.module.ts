@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +24,11 @@ import { TodoItemDetailComponent } from './todo-item-detail/todo-item-detail.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    ButtonModule,
+    InputTextModule,
+    CheckboxModule,
+    AppRoutingModule,
   ],
   providers: [TodoListService, StorageService],
   bootstrap: [AppComponent]

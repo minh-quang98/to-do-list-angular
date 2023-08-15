@@ -14,6 +14,8 @@ export class TodoItemComponent implements OnInit{
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('updateElementRef') updateElementRef: ElementRef;
 
+  checked: boolean = false
+
   constructor(private router: Router) {
 
   }

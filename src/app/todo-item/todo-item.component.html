@@ -3,15 +3,16 @@
          class="todo-checkbox"
          (click)="completeItem()"
          [checked]="item.completed"/>
+         <!-- <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox> -->
   <span *ngIf="!item.isEdit" class="todo-title" [ngClass]="{'todo-complete': item.completed}">
     {{ item.title }}
   </span>
 
-  <input class="todo-input" *ngIf="item.isEdit" #updateElementRef [value]="item.title">
+  <input pInputText class="todo-input p-inputtext-sm" *ngIf="item.isEdit" #updateElementRef [value]="item.title">
 
-  <button *ngIf="!item.isEdit" class="btn" (click)="viewMode(item.id)">View</button>
-  <button [disabled]="item.completed" *ngIf="!item.isEdit" class="btn" [ngClass]="{'btn-disabled': item.completed}" (click)="editMode()">Edit</button>
-  <button *ngIf="item.isEdit" class="btn" (click)="saveItem(updateElementRef)">Save</button>
-  <button *ngIf="!item.isEdit" class="btn btn-red" (click)="removeItem()">Remove</button>
-  <button *ngIf="item.isEdit" class="btn btn-red" (click)="editMode()">Cancel</button>
+  <p-button label="View" *ngIf="!item.isEdit" styleClass="btn" (onClick)="viewMode(item.id)"/>
+  <p-button label="Edit" [disabled]="item.completed" *ngIf="!item.isEdit" styleClass="btn" (onClick)="editMode()"/>
+  <p-button label="Save" *ngIf="item.isEdit" styleClass="btn p-button-success" (onClick)="saveItem(updateElementRef)"/>
+  <p-button label="Remove" *ngIf="!item.isEdit" styleClass="btn p-button-danger" (onClick)="removeItem()"/>
+  <p-button label="Cancel" *ngIf="item.isEdit" styleClass="btn p-button-danger" (onClick)="editMode()"/>
 </div>
