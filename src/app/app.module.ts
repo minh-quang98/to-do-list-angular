@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule }    from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { TodoItemDetailComponent } from './todo-item-detail/todo-item-detail.com
     ButtonModule,
     InputTextModule,
     CheckboxModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [TodoListService, StorageService],
