@@ -31,7 +31,17 @@ export class TodoItemDetailComponent implements OnInit{
       this.status = todoItem.completed ? "Done" : "Undone";
       this.dateStart = moment(todoItem.dateStart).format("DD/MM/YYYY")
       this.dateComplete = todoItem.completed ? moment(todoItem.dateCompeted).format("DD/MM/YYYY") : "None";
-      this.totalTime = todoItem.completed ? `${moment.duration(moment(todoItem.dateCompeted).diff(moment(todoItem.dateStart))).as('hours').toFixed(2)} Hours` : "None";
+      this.totalTime = todoItem.completed ? this.convertDateTime(todoItem.dateStart, todoItem.dateCompeted) : "None";
+  }
+
+  convertDateTime(start: Date, end: Date): any {
+    const rawTime = parseFloat(moment.duration(moment(end).diff(moment(start))).as('hours').toFixed(2))
+    if (rawTime < 1) {
+      return `${(rawTime * 60).toFixed(0)} Minutes`
+    } else {
+      const numberHours = rawTime.toFixed(0)
+      return `${numberHours} Hours ${((rawTime - parseInt(numberHours)) * 60).toFixed(0)} Minutes`
+    }
   }
 
   backClick(): void {
