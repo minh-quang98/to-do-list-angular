@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { TodoItem } from '../interfaces/todo-item';
-import { TodoListService } from '../services/todo-list.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,8 +12,6 @@ export class TodoItemComponent implements OnInit{
   @Output() remove: EventEmitter<TodoItem> = new EventEmitter<TodoItem>();
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('updateElementRef') updateElementRef: ElementRef;
-
-  checked: boolean = false
 
   constructor(private router: Router) {
 

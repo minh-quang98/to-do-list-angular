@@ -26,21 +26,22 @@ export class TodoItemDetailComponent implements OnInit{
       this.id = +this.route.snapshot.params['id'];
       this.todoList = this.todoListService.getTodoList();
       const todoItem: TodoItem = this.todoList.find(item => item.id === this.id)
-      console.log(todoItem);
       this.name = todoItem.title;
       this.status = todoItem.completed ? "Done" : "Undone";
       this.dateStart = moment(todoItem.dateStart).format("DD/MM/YYYY")
       this.dateComplete = todoItem.completed ? moment(todoItem.dateCompeted).format("DD/MM/YYYY") : "None";
-      this.totalTime = todoItem.completed ? this.convertDateTime(todoItem.dateStart, todoItem.dateCompeted) : "None";
+      this.totalTime = todoItem.completed ? this.sumaryTotalTime(todoItem.dateStart, todoItem.dateCompeted) : "None";
   }
 
-  convertDateTime(start: Date, end: Date): any {
-    const rawTime = parseFloat(moment.duration(moment(end).diff(moment(start))).as('hours').toFixed(2))
-    if (rawTime < 1) {
-      return `${(rawTime * 60).toFixed(0)} Minutes`
+  sumaryTotalTime(start: Date, end: Date): any {
+    const rawTime = parseFloat(moment.duration(moment(end).diff(moment(start))).as('minutes').toFixed(0))
+    if (rawTime < 60) {
+      return `${rawTime} Minutes`
+    } else if (rawTime % 60 === 0) {
+      return `${rawTime} Hours`
     } else {
-      const numberHours = rawTime.toFixed(0)
-      return `${numberHours} Hours ${((rawTime - parseInt(numberHours)) * 60).toFixed(0)} Minutes`
+      const numberHours = (rawTime - (rawTime % 60)) / 60
+      return `${numberHours} Hours ${rawTime - numberHours * 60} Minutes`
     }
   }
 

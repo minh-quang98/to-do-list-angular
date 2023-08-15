@@ -5,6 +5,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule }    from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { PanelModule } from 'primeng/panel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,7 @@ import { ListManagerComponent } from './list-manager/list-manager.component';
 import { TodoListService } from './services/todo-list.service';
 import { StorageService } from './services/storage.service';
 import { TodoItemDetailComponent } from './todo-item-detail/todo-item-detail.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,12 @@ import { TodoItemDetailComponent } from './todo-item-detail/todo-item-detail.com
     InputTextModule,
     CheckboxModule,
     FormsModule,
+    ToastModule,
+    MessagesModule,
+    PanelModule,
     AppRoutingModule,
   ],
-  providers: [TodoListService, StorageService],
+  providers: [TodoListService, StorageService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
