@@ -4,14 +4,7 @@ import { StorageService } from './storage.service';
 
 const todoListStorageKey = 'Todo_List';
 
-const defaultTodoList: TodoItem[] = [
-  {id: 1, title: 'install NodeJS'},
-  {id: 2, title: 'install Angular CLI'},
-  {id: 3, title: 'create new app'},
-  {id: 4, title: 'serve app'},
-  {id: 5, title: 'develop app'},
-  {id: 6, title: 'deploy app'},
-];
+const defaultTodoList: TodoItem[] = [];
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +15,7 @@ export class TodoListService {
     this.todoList = storageService.getData(todoListStorageKey) || defaultTodoList
   }
 
-  private todoList: TodoItem[] = [
-    {id: 1, title: 'install NodeJS'},
-    {id: 2, title: 'install Angular CLI'},
-    {id: 3, title: 'create new app'},
-    {id: 4, title: 'serve app'},
-    {id: 5, title: 'develop app'},
-    {id: 6, title: 'deploy app'},
-  ]
+  private todoList: TodoItem[] = []
 
   getTodoList(): TodoItem[] {
     return this.todoList;

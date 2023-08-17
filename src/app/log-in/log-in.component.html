@@ -1,0 +1,20 @@
+<div class="login-content">
+  <div class="card login-box">
+    <p-card header="Login">
+      <div class="login-form">
+        <span class="p-float-label input-username">
+          <input class="width100" pInputText id="username" [(ngModel)]="username" />
+          <label htmlFor="username">Username</label>
+        </span>
+
+        <span class="p-float-label input-username">
+          <p-password inputStyleClass="width100" styleClass="width100" [(ngModel)]="password" [toggleMask]="true"></p-password>
+          <label htmlFor="username">Password</label>
+        </span>
+      </div>
+      <div class="login-group-button width100">
+        <p-button label="Log In" (onClick)="submit()"></p-button>
+      </div>
+    </p-card>
+  </div>
+</div>

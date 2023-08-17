@@ -12,9 +12,9 @@ import * as moment from 'moment';
 export class TodoItemDetailComponent implements OnInit{
   id: number;
   name: string;
-  status: string;
-  dateStart: string;
-  dateComplete: string;
+  status: boolean;
+  dateStart: string | Date;
+  dateComplete: string | Date;
   totalTime: string | number
   todoList: TodoItem[]
 
@@ -27,9 +27,9 @@ export class TodoItemDetailComponent implements OnInit{
       this.todoList = this.todoListService.getTodoList();
       const todoItem: TodoItem = this.todoList.find(item => item.id === this.id)
       this.name = todoItem.title;
-      this.status = todoItem.completed ? "Done" : "Undone";
-      this.dateStart = moment(todoItem.dateStart).format("DD/MM/YYYY")
-      this.dateComplete = todoItem.completed ? moment(todoItem.dateCompeted).format("DD/MM/YYYY") : "None";
+      this.status = todoItem.completed;
+      this.dateStart = todoItem.dateStart
+      this.dateComplete = todoItem.dateCompeted;
       this.totalTime = todoItem.completed ? this.sumaryTotalTime(todoItem.dateStart, todoItem.dateCompeted) : "None";
   }
 

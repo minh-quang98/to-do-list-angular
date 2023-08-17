@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TodoItem } from '../interfaces/todo-item';
 import { TodoListService } from './../services/todo-list.service';
 import { MessageService } from 'primeng/api';
+import { LogInService } from '../services/log-in.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-manager',
@@ -11,17 +13,19 @@ import { MessageService } from 'primeng/api';
 })
 export class ListManagerComponent implements OnInit {
   todoList: TodoItem[];
+  author: string;
 
-  constructor(private todoListService: TodoListService, private messageService: MessageService) {
+  constructor(private todoListService: TodoListService, private messageService: MessageService, private logInService: LogInService, private router: Router) {
 
   }
 
   ngOnInit(): void {
       this.todoList = this.todoListService.getTodoList()
+      this.author = this.logInService.getUser()
   }
 
   addItem(title: string): void {
-    this.todoListService.addItem({ id: this.todoList.length + 1, title, dateStart: new Date() });
+    this.todoListService.addItem({ id: this.todoList.length + 1, title, dateStart: new Date(), author: this.author });
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Add Success' });
   }
 
@@ -35,5 +39,9 @@ export class ListManagerComponent implements OnInit {
     if (save) {
       this.messageService.add({ severity:'success', summary: 'Success', detail: 'Update Success' });
     }
+  }
+
+  logOut(): void {
+    this.router.navigate(["login"]);
   }
 }

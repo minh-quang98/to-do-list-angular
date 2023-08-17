@@ -8,6 +8,9 @@ import { FormsModule }    from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
+import { CardModule } from 'primeng/card';
+
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +21,11 @@ import { TodoListService } from './services/todo-list.service';
 import { StorageService } from './services/storage.service';
 import { TodoItemDetailComponent } from './todo-item-detail/todo-item-detail.component';
 import { MessageService } from 'primeng/api';
+import { appReducer } from 'src/store';
+import { CustomDatePipe } from 'src/share/customPipe/custom-date-pipe';
+import { CustomeStatusPipe } from 'src/share/customPipe/custom-status-pipe';
+import { LogInComponent } from './log-in/log-in.component';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -26,6 +34,9 @@ import { MessageService } from 'primeng/api';
     TodoItemComponent,
     ListManagerComponent,
     TodoItemDetailComponent,
+    CustomDatePipe,
+    CustomeStatusPipe,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +48,10 @@ import { MessageService } from 'primeng/api';
     ToastModule,
     MessagesModule,
     PanelModule,
+    CardModule,
+    PasswordModule,
     AppRoutingModule,
+    StoreModule.forRoot(appReducer),
   ],
   providers: [TodoListService, StorageService, MessageService],
   bootstrap: [AppComponent]

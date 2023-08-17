@@ -1,9 +1,15 @@
-<app-input-button-unit class="todo-app" (submit)="addItem($event)"></app-input-button-unit>
+<p-card>
+  <app-input-button-unit class="todo-app" (submit)="addItem($event)"></app-input-button-unit>
 
-<ul>
-  <li *ngFor="let todoItem of todoList">
-    <app-todo-item [item]="todoItem" (remove)="removeItem($event)" (update)="updateItem($event.item, $event.changes, $event.save)"></app-todo-item>
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let todoItem of todoList">
+      <app-todo-item [item]="todoItem" (remove)="removeItem($event)"
+        (update)="updateItem($event.item, $event.changes, $event.save)"></app-todo-item>
+    </li>
+  </ul>
 
-<p-toast></p-toast>
+  <div class="login-group-button width100">
+        <p-button label="Log Out" (onClick)="logOut()"></p-button>
+      </div>
+  <p-toast></p-toast>
+</p-card>
