@@ -27,6 +27,8 @@ import { CustomeStatusPipe } from 'src/share/customPipe/custom-status-pipe';
 import { LogInComponent } from './log-in/log-in.component';
 import { PasswordModule } from 'primeng/password';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,7 @@ import { PasswordModule } from 'primeng/password';
     CardModule,
     PasswordModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(appReducer),
   ],
   providers: [TodoListService, StorageService, MessageService],

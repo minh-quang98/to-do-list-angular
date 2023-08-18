@@ -4,6 +4,7 @@ import { TodoListService } from './../services/todo-list.service';
 import { MessageService } from 'primeng/api';
 import { LogInService } from '../services/log-in.service';
 import { Router } from '@angular/router';
+import { ConfigService } from '../config/config.service';
 
 @Component({
   selector: 'app-list-manager',
@@ -15,13 +16,29 @@ export class ListManagerComponent implements OnInit {
   todoList: TodoItem[];
   author: string;
 
-  constructor(private todoListService: TodoListService, private messageService: MessageService, private logInService: LogInService, private router: Router) {
-
-  }
+  constructor(
+    private todoListService: TodoListService,
+    private messageService: MessageService,
+    private logInService: LogInService,
+    private router: Router,
+    private configService: ConfigService
+    ) {}
 
   ngOnInit(): void {
-      this.todoList = this.todoListService.getTodoList()
-      this.author = this.logInService.getUser()
+    this.todoList = this.todoListService.getTodoList()
+    this.author = this.logInService.getUser()
+    this.getData()
+  }
+
+  getData(): void {
+    this.configService.getData('https://jsonplaceholder.typicode.com/posts/1').subscribe(
+      result => {
+        console.log("check>>result", result);
+      },
+      error => {
+        console.log("check>>error", error);
+      }
+    )
   }
 
   addItem(title: string): void {
@@ -37,7 +54,7 @@ export class ListManagerComponent implements OnInit {
   updateItem(item: TodoItem, changes, save: boolean): void {
     this.todoListService.updateItem(item, changes)
     if (save) {
-      this.messageService.add({ severity:'success', summary: 'Success', detail: 'Update Success' });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Update Success' });
     }
   }
 
